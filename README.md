@@ -9,4 +9,4 @@ python hdr_model.py
 
 ## Tesing
 
-**To demo.ipynb**
+**[To demo.ipynb](demo.ipynb)**
