@@ -2,3 +2,7 @@ __pycache__
 .vscode
 lightning_logs
 *.ckpt
+*.mp4
+*.avi
+log
+motion_data
