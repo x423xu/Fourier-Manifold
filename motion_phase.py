@@ -286,5 +286,5 @@ if __name__ == "__main__":
     # for k,v in torch.load(ckpt_path, map_location='cpu')['state_dict'].items():
     #     model.state_dict()[k].copy_(v)
     loader = HDRDataModule(batch_size = kwargs['batch_size'], side_length=kwargs['side_length'], motion_path = kwargs['motion_path'], sequence_range=kwargs['sequence_range'], skip = kwargs['skip'])
-    trainer = pl.Trainer( max_epochs=1000, devices = 1, log_every_n_steps=100, enable_progress_bar=True, callbacks=[checkpoint_callback],logger=pl.loggers.CSVLogger(save_dir=kwargs['project_name'], name='log'))
+    trainer = pl.Trainer(accelerator='gpu', max_epochs=1000, devices = 1, log_every_n_steps=100, enable_progress_bar=True, callbacks=[checkpoint_callback],logger=pl.loggers.CSVLogger(save_dir=kwargs['project_name'], name='log'))
     trainer.fit(model, loader)

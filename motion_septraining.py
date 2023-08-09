@@ -235,7 +235,7 @@ def multiple_fit(process_id, kwargs):
     checkpoint_callback = ModelCheckpoint(dirpath=os.path.join(kwargs['project_name'],'checkpoints'),save_last=False, save_top_k=1, monitor="train_psnr", mode="max", every_n_epochs=100, filename=time_str+'p{}'.format(process_id))
     model = PLFourierNet()
     data_module = HDRDataModule(batch_size = kwargs['batch_size'], side_length=kwargs['side_length'], motion_path = kwargs['motion_path'], sequence_range=kwargs['sequence_range'], skip = kwargs['skip'], process_id=process_id)
-    trainer = pl.Trainer( max_epochs=300, devices = 1, log_every_n_steps=1, enable_progress_bar=False, callbacks=[checkpoint_callback],logger=logger)
+    trainer = pl.Trainer(accelerator='gpu', max_epochs=300, devices = 1, log_every_n_steps=1, enable_progress_bar=False, callbacks=[checkpoint_callback],logger=logger)
     trainer.fit(model, data_module)
 
 if __name__ == "__main__":

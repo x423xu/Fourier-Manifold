@@ -236,5 +236,5 @@ if __name__ == "__main__":
     checkpoint_callback = ModelCheckpoint(dirpath='hdr_model',save_last=True, save_top_k=1, monitor="train_psnr", mode="max", every_n_epochs=100)
     model = PLFourierNet(pos_embed=False)
     loader = HDRDataModule(batch_size=5, side_length=256)
-    trainer = pl.Trainer(max_epochs=6000, devices = 1, log_every_n_steps=100, enable_progress_bar=True, callbacks=[checkpoint_callback])
+    trainer = pl.Trainer(accelerator='gpu', max_epochs=6000, devices = 1, log_every_n_steps=100, enable_progress_bar=True, callbacks=[checkpoint_callback])
     trainer.fit(model, loader)
