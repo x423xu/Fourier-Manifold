@@ -6,3 +6,7 @@ lightning_logs
 *.avi
 log
 motion_data
+output
+*.npy
+*.gif
+*.pth
